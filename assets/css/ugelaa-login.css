@@ -1,0 +1,478 @@
+/* ============================================
+   UGELAA Login - Split Layout
+   Sistema de Trámite
+   Primary Color: #007ee8
+   ============================================ */
+
+:root {
+	--ugelaa-primary: #007ee8;
+	--ugelaa-primary-light: #4da6f5;
+	--ugelaa-primary-dark: #0060b8;
+	--ugelaa-primary-rgb: 0, 126, 232;
+	--ugelaa-text-dark: #1a1a2e;
+	--ugelaa-text-secondary: #6b7280;
+	--ugelaa-text-muted: #9ca3af;
+	--ugelaa-input-bg: #f3f6fb;
+	--ugelaa-input-border: #dce3ed;
+	--ugelaa-input-focus-border: var(--ugelaa-primary);
+	--ugelaa-radius: 12px;
+	--ugelaa-radius-sm: 10px;
+}
+
+/* ---- Base ---- */
+body.ugelaa-login {
+	font-family: 'Inter', sans-serif;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	overflow-x: hidden;
+	background: #ffffff;
+}
+
+/* ============================================
+   SPLIT LAYOUT
+   ============================================ */
+.ugelaa-split {
+	display: flex;
+	min-height: 100vh;
+}
+
+/* ---- Left Panel (Blue Branding) ---- */
+.ugelaa-panel-left {
+	width: 480px;
+	min-width: 480px;
+	background: var(--ugelaa-primary);
+	background-image: url('../../src/media/auth/bg-5%20-%202.jpg');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 44px 40px;
+	overflow: hidden;
+	animation: panelSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	opacity: 0;
+	transform: translateX(-30px);
+}
+
+@keyframes panelSlideIn {
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Left panel dark overlay for text readability */
+.ugelaa-panel-left::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 100, 200, 0.15) 0%,
+		rgba(0, 60, 140, 0.25) 100%
+	);
+	z-index: 0;
+}
+
+.ugelaa-panel-left > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* Logo in left panel */
+.ugelaa-panel-logo {
+	margin-bottom: auto;
+}
+
+.ugelaa-panel-logo img {
+	height: 80px;
+	width: auto;
+	filter: brightness(0) invert(1);
+	transition: transform 0.3s ease;
+}
+
+.ugelaa-panel-logo img:hover {
+	transform: scale(1.04);
+}
+
+/* Branding text at bottom of left panel */
+.ugelaa-panel-branding {
+	animation: fadeInUp 0.6s 0.3s ease forwards;
+	opacity: 0;
+	transform: translateY(16px);
+}
+
+.ugelaa-panel-branding h2 {
+	font-size: 28px;
+	font-weight: 700;
+	color: #ffffff;
+	margin: 0 0 10px 0;
+	line-height: 1.3;
+}
+
+.ugelaa-panel-branding p {
+	font-size: 15px;
+	color: rgba(255, 255, 255, 0.75);
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Footer in left panel */
+.ugelaa-panel-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 24px;
+	border-top: 1px solid rgba(255, 255, 255, 0.15);
+	margin-top: 28px;
+	animation: fadeInUp 0.6s 0.45s ease forwards;
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.ugelaa-panel-footer-copy {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.55);
+	margin: 0;
+}
+
+.ugelaa-panel-footer-links {
+	display: flex;
+	gap: 16px;
+}
+
+.ugelaa-panel-footer-links a {
+	font-size: 13px;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.7);
+	text-decoration: none;
+	transition: color 0.25s ease;
+}
+
+.ugelaa-panel-footer-links a:hover {
+	color: #ffffff;
+}
+
+/* ---- Right Panel (White Form Area) ---- */
+.ugelaa-panel-right {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 48px 40px;
+	background: #ffffff;
+	position: relative;
+	min-height: 100vh;
+}
+
+/* ---- Form Container ---- */
+.ugelaa-form-container {
+	width: 100%;
+	max-width: 400px;
+	animation: formFadeIn 0.5s 0.2s ease forwards;
+	opacity: 0;
+}
+
+@keyframes formFadeIn {
+	to {
+		opacity: 1;
+	}
+}
+
+/* Form Header */
+.ugelaa-form-header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.ugelaa-form-header h1 {
+	font-size: 26px;
+	font-weight: 700;
+	color: var(--ugelaa-text-dark);
+	margin: 0 0 8px 0;
+	letter-spacing: -0.3px;
+}
+
+.ugelaa-form-header p {
+	font-size: 14px;
+	color: var(--ugelaa-text-secondary);
+	margin: 0;
+}
+
+/* ---- Input Groups ---- */
+.ugelaa-input-group {
+	position: relative;
+	margin-bottom: 18px;
+	animation: fadeInUp 0.4s ease forwards;
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.ugelaa-input-group:nth-child(1) {
+	animation-delay: 0.3s;
+}
+
+.ugelaa-input-group:nth-child(2) {
+	animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Input Label */
+.ugelaa-input-label {
+	display: block;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--ugelaa-text-dark);
+	margin-bottom: 6px;
+}
+
+/* Input Wrapper (icon + input) */
+.ugelaa-input-wrap {
+	position: relative;
+}
+
+.ugelaa-input-icon {
+	position: absolute;
+	left: 14px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--ugelaa-text-muted);
+	transition: color 0.3s ease;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.ugelaa-input {
+	width: 100%;
+	padding: 13px 14px 13px 46px;
+	background: var(--ugelaa-input-bg);
+	border: 1.5px solid var(--ugelaa-input-border);
+	border-radius: var(--ugelaa-radius-sm);
+	color: var(--ugelaa-text-dark);
+	font-size: 14px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+	transition: all 0.25s ease;
+	outline: none;
+}
+
+.ugelaa-input::placeholder {
+	color: var(--ugelaa-text-muted);
+}
+
+.ugelaa-input:hover {
+	border-color: rgba(var(--ugelaa-primary-rgb), 0.4);
+}
+
+.ugelaa-input:focus {
+	border-color: var(--ugelaa-input-focus-border);
+	background: #ffffff;
+	box-shadow: 0 0 0 3px rgba(var(--ugelaa-primary-rgb), 0.1);
+}
+
+.ugelaa-input:focus ~ .ugelaa-input-icon {
+	color: var(--ugelaa-primary);
+}
+
+/* ---- Password Toggle ---- */
+.ugelaa-pw-toggle {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: var(--ugelaa-text-muted);
+	cursor: pointer;
+	padding: 4px;
+	transition: color 0.25s ease;
+	z-index: 2;
+	line-height: 0;
+}
+
+.ugelaa-pw-toggle:hover {
+	color: var(--ugelaa-primary);
+}
+
+/* ---- Submit Button ---- */
+.ugelaa-btn-wrapper {
+	margin-top: 28px;
+	animation: fadeInUp 0.4s 0.5s ease forwards;
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.ugelaa-btn-submit {
+	width: 100%;
+	padding: 13px 24px;
+	background: var(--ugelaa-primary);
+	border: none;
+	border-radius: var(--ugelaa-radius-sm);
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 14px rgba(var(--ugelaa-primary-rgb), 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.ugelaa-btn-submit::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+	transition: left 0.5s ease;
+}
+
+.ugelaa-btn-submit:hover {
+	background: var(--ugelaa-primary-dark);
+	box-shadow: 0 6px 20px rgba(var(--ugelaa-primary-rgb), 0.4);
+	transform: translateY(-1px);
+}
+
+.ugelaa-btn-submit:hover::before {
+	left: 100%;
+}
+
+.ugelaa-btn-submit:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 8px rgba(var(--ugelaa-primary-rgb), 0.25);
+}
+
+/* Button spinner */
+.ugelaa-btn-submit .ugelaa-spinner {
+	display: none;
+	width: 18px;
+	height: 18px;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	border-top-color: #ffffff;
+	border-radius: 50%;
+	animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ---- Right Panel Footer ---- */
+.ugelaa-right-footer {
+	position: absolute;
+	bottom: 24px;
+	text-align: center;
+	animation: fadeInUp 0.4s 0.6s ease forwards;
+	opacity: 0;
+}
+
+.ugelaa-right-footer p {
+	font-size: 11px;
+	color: var(--ugelaa-text-muted);
+	margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+	.ugelaa-panel-left {
+		width: 400px;
+		min-width: 400px;
+		padding: 36px 32px;
+	}
+
+	.ugelaa-panel-branding h2 {
+		font-size: 24px;
+	}
+
+	.ugelaa-panel-right {
+		padding: 40px 32px;
+	}
+}
+
+/* Mobile: stack layout */
+@media (max-width: 768px) {
+	.ugelaa-split {
+		flex-direction: column;
+	}
+
+	.ugelaa-panel-left {
+		width: 100%;
+		min-width: 100%;
+		min-height: auto;
+		padding: 28px 24px 20px;
+	}
+
+	.ugelaa-panel-branding {
+		margin-top: 20px;
+	}
+
+	.ugelaa-panel-branding h2 {
+		font-size: 18px;
+	}
+
+	.ugelaa-panel-branding p {
+		font-size: 12px;
+	}
+
+	.ugelaa-panel-footer {
+		display: none;
+	}
+
+	.ugelaa-panel-right {
+		min-height: auto;
+		padding: 32px 24px 40px;
+	}
+
+	.ugelaa-form-container {
+		max-width: 100%;
+	}
+
+	.ugelaa-form-header h1 {
+		font-size: 22px;
+	}
+
+	.ugelaa-right-footer {
+		position: relative;
+		bottom: auto;
+		margin-top: 32px;
+	}
+}
+
+@media (max-width: 400px) {
+	.ugelaa-panel-right {
+		padding: 24px 16px 32px;
+	}
+
+	.ugelaa-input {
+		padding: 12px 12px 12px 42px;
+		font-size: 13px;
+	}
+}
