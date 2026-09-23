@@ -80,8 +80,8 @@ Based on Metronic 8.2.9
 				<!--end::Header-->
 
 				<!--begin::Form-->
-				<form class="ugelaa-form" novalidate="novalidate" id="kt_sign_in_form"
-					data-kt-redirect-url="index.html" action="#">
+				<form class="ugelaa-form" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="index.html"
+					action="#">
 
 					<!--begin::Usuario Input-->
 					<div class="ugelaa-input-group">
@@ -171,11 +171,8 @@ Based on Metronic 8.2.9
 	<!--end::Custom Javascript-->
 
 	<script>
-		// ============================================
-		// UGELAA Login - Interactive Enhancements
-		// ============================================
+
 		document.addEventListener('DOMContentLoaded', function () {
-			// --- Password Visibility Toggle ---
 			var pwToggle = document.getElementById('ugelaa_pw_toggle');
 			var pwInput = document.getElementById('ugelaa_password');
 			var eyeIcon = document.getElementById('ugelaa_eye_icon');
@@ -192,7 +189,6 @@ Based on Metronic 8.2.9
 				});
 			}
 
-			// --- Input Focus Effect ---
 			document.querySelectorAll('.ugelaa-input').forEach(function (input) {
 				input.addEventListener('focus', function () {
 					this.closest('.ugelaa-input-wrap').style.transform = 'scale(1.01)';

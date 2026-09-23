@@ -24,7 +24,7 @@ body.ugelaa-login {
 	font-family: 'Inter', sans-serif;
 	margin: 0;
 	padding: 0;
-	min-height: 100vh;
+	min-height: 80vh;
 	overflow-x: hidden;
 	background: #ffffff;
 }
@@ -71,15 +71,13 @@ body.ugelaa-login {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(
-		180deg,
-		rgba(0, 100, 200, 0.15) 0%,
-		rgba(0, 60, 140, 0.25) 100%
-	);
+	background: linear-gradient(180deg,
+			rgba(0, 100, 200, 0.15) 0%,
+			rgba(0, 60, 140, 0.25) 100%);
 	z-index: 0;
 }
 
-.ugelaa-panel-left > * {
+.ugelaa-panel-left>* {
 	position: relative;
 	z-index: 1;
 }
@@ -90,7 +88,7 @@ body.ugelaa-login {
 }
 
 .ugelaa-panel-logo img {
-	height: 80px;
+	height: 100px;
 	width: auto;
 	filter: brightness(0) invert(1);
 	transition: transform 0.3s ease;
@@ -283,7 +281,7 @@ body.ugelaa-login {
 	box-shadow: 0 0 0 3px rgba(var(--ugelaa-primary-rgb), 0.1);
 }
 
-.ugelaa-input:focus ~ .ugelaa-input-icon {
+.ugelaa-input:focus~.ugelaa-input-icon {
 	color: var(--ugelaa-primary);
 }
 

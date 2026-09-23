@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mesa de Partes Virtual de la UGEL Alto Amazonas. Registre su solicitud FUT de manera rápida y segura.">
+    <title>Mesa de Partes Virtual · UGEL Alto Amazonas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/fut-registro.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="topbar__brand">
+            <img src="../src/media/logos/LOGO_UGELAA_N.png" alt="Logo UGEL Alto Amazonas" class="topbar__logo">
+            <div class="topbar__id">
+                <span class="topbar__entity">UGEL Alto Amazonas · Yurimaguas</span>
+                <span class="topbar__unit">Unidad de Gestión Educativa Local</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero__text">
+            <p class="hero__eyebrow">Trámite documentario</p>
+            <h1>Mesa de Partes Virtual</h1>
+            <p class="hero__lead">Registre su solicitud dirigida a la UGELAA sin salir de casa. Complete los seis pasos
+                y adjunte su documentación.</p>
+        </div>
+    </section>
+
+    <main class="layout">
+
+        <nav class="stepper" aria-label="Secciones del formulario">
+            <a href="#s1" class="stepper__item is-active"><span class="stepper__num">I</span>Solicitud</a>
+            <a href="#s2" class="stepper__item"><span class="stepper__num">II</span>Destinatario</a>
+            <a href="#s3" class="stepper__item"><span class="stepper__num">III</span>Solicitante</a>
+            <a href="#s4" class="stepper__item"><span class="stepper__num">IV</span>Dirección</a>
+            <a href="#s5" class="stepper__item"><span class="stepper__num">V</span>Fundamentos</a>
+            <a href="#s6" class="stepper__item"><span class="stepper__num">VI</span>Adjuntos</a>
+        </nav>
+
+        <form class="form-card" id="fut-form" novalidate>
+
+            <fieldset class="section" id="s1" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                        <path d="M14 3v5h5" />
+                        <path d="M9 13h6M9 17h6M9 9h1" />
+                    </svg>
+                    <span><em>I.</em> Solicitud o resumen de su pedido<i class="req">*</i></span>
+                </legend>
+                <label class="field">
+                    <textarea name="resumen" rows="3" placeholder="Describa brevemente qué está solicitando"
+                        required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset class="section" id="s2" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 21V7l8-4 8 4v14" />
+                        <path d="M9 21v-6h6v6M4 21h16" />
+                    </svg>
+                    <span><em>II.</em> Dependencia o autoridad a quien se dirige</span>
+                </legend>
+                <p class="pill">Director UGELAA</p>
+            </fieldset>
+
+            <fieldset class="section" id="s3" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="8" r="3.4" />
+                        <path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" />
+                    </svg>
+                    <span><em>III.</em> Datos del solicitante<i class="req">*</i></span>
+                </legend>
+
+                <div class="grid grid--2">
+                    <label class="field">
+                        <span>Tipo de persona</span>
+                        <select name="tipo_persona" id="tipo_persona">
+                            <option value="natural" selected>Natural</option>
+                            <option value="juridica">Jurídica</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Nro. de documento</span>
+                        <input type="text" name="documento" placeholder="DNI / RUC" required>
+                    </label>
+                </div>
+
+                <div class="grid grid--2" data-persona="natural" style="margin-top: 18px;">
+                    <label class="field">
+                        <span>Apellido paterno</span>
+                        <input type="text" name="apellido_paterno" required>
+                    </label>
+                    <label class="field">
+                        <span>Apellido materno</span>
+                        <input type="text" name="apellido_materno" required>
+                    </label>
+                    <label class="field field--full">
+                        <span>Nombres</span>
+                        <input type="text" name="nombres" required>
+                    </label>
+                </div>
+
+                <div class="grid grid--2" data-persona="juridica" hidden style="margin-top: 18px;">
+                    <label class="field field--full">
+                        <span>Razón social</span>
+                        <input type="text" name="razon_social">
+                    </label>
+                    <label class="field">
+                        <span>RUC</span>
+                        <input type="text" name="ruc">
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="section" id="s4" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z" />
+                        <circle cx="12" cy="9.5" r="2.3" />
+                    </svg>
+                    <span><em>IV.</em> Dirección<i class="req">*</i></span>
+                </legend>
+                <div class="grid grid--2">
+                    <label class="field field--full">
+                        <span>Dirección</span>
+                        <input type="text" name="direccion" required>
+                    </label>
+                    <label class="field">
+                        <span>Referencia</span>
+                        <input type="text" name="referencia">
+                    </label>
+                    <label class="field">
+                        <span>Distrito</span>
+                        <input type="text" name="distrito" required>
+                    </label>
+                    <label class="field">
+                        <span>Teléfono</span>
+                        <input type="tel" name="telefono" required>
+                    </label>
+                    <label class="field">
+                        <span>Correo</span>
+                        <input type="email" name="correo" required>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="section" id="s5" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
+                        <path d="M14 4v5h5M8 13h8M8 16h5" />
+                    </svg>
+                    <span><em>V.</em> Fundamentos del pedido<i class="req">*</i></span>
+                </legend>
+                <label class="field">
+                    <textarea name="fundamentos" rows="4"
+                        placeholder="Sustente su pedido citando la norma o motivo correspondiente" required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset class="section" id="s6" data-animate>
+                <legend class="section__title">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path
+                            d="M21.4 11.5 12.9 20a4.5 4.5 0 0 1-6.4-6.4l8.5-8.5a3 3 0 0 1 4.2 4.2l-8.5 8.5a1.5 1.5 0 0 1-2.1-2.1l7.8-7.8" />
+                    </svg>
+                    <span><em>VI.</em> Documentos que se adjuntan</span>
+                </legend>
+                <label class="upload" for="archivos">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 16V4M7 9l5-5 5 5" />
+                        <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+                    </svg>
+                    <span id="upload-label">Arrastre o haga clic para adjuntar archivos</span>
+                </label>
+                <input type="file" id="archivos" name="archivos" multiple hidden>
+            </fieldset>
+
+            <div class="actions">
+                <p class="actions__note"><i class="req">*</i> Debe completar el campo para continuar.</p>
+                <div class="actions__buttons">
+                    <button type="button" class="btn btn--ghost" id="btn-consultar">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="11" cy="11" r="7" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                        Consultar FUT
+                    </button>
+                    <button type="submit" class="btn btn--primary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 12h16M14 6l6 6-6 6" />
+                        </svg>
+                        Registrar FUT
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+        /* ── Persona Natural / Jurídica toggle ─────────────── */
+        const select = document.getElementById('tipo_persona');
+        const natural = document.querySelector('[data-persona="natural"]');
+        const juridica = document.querySelector('[data-persona="juridica"]');
+        select.addEventListener('change', () => {
+            const isJuridica = select.value === 'juridica';
+            natural.hidden = isJuridica;
+            juridica.hidden = !isJuridica;
+        });
+
+        /* ── File upload feedback ──────────────────────────── */
+        const fileInput = document.getElementById('archivos');
+        const fileLabel = document.getElementById('upload-label');
+        fileInput.addEventListener('change', () => {
+            fileLabel.textContent = fileInput.files.length
+                ? `${fileInput.files.length} archivo(s) seleccionado(s)`
+                : 'Arrastre o haga clic para adjuntar archivos';
+        });
+
+        /* ── Stepper click navigation ──────────────────────── */
+        const items = document.querySelectorAll('.stepper__item');
+        items.forEach(item => item.addEventListener('click', () => {
+            items.forEach(i => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+        }));
+
+        /* ── IntersectionObserver: Scroll Reveal Animations ── */
+        const sections = document.querySelectorAll('.section[data-animate]');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -60px 0px'
+        });
+
+        sections.forEach(section => revealObserver.observe(section));
+
+        /* ── IntersectionObserver: Auto-update Stepper ─────── */
+        const sectionIds = ['s1', 's2', 's3', 's4', 's5', 's6'];
+        const sectionElements = sectionIds.map(id => document.getElementById(id));
+
+        const stepperObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    items.forEach(item => {
+                        item.classList.toggle('is-active',
+                            item.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, {
+            threshold: 0.35,
+            rootMargin: '-100px 0px -40% 0px'
+        });
+
+        sectionElements.forEach(el => {
+            if (el) stepperObserver.observe(el);
+        });
+    </script>
+</body>
+
+</html>
