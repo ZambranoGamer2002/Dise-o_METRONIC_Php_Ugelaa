@@ -90,11 +90,25 @@ body {
 }
 
 /* Stagger delay per section */
-.section[data-animate]:nth-of-type(2) { transition-delay: .06s; }
-.section[data-animate]:nth-of-type(3) { transition-delay: .12s; }
-.section[data-animate]:nth-of-type(4) { transition-delay: .18s; }
-.section[data-animate]:nth-of-type(5) { transition-delay: .24s; }
-.section[data-animate]:nth-of-type(6) { transition-delay: .30s; }
+.section[data-animate]:nth-of-type(2) {
+    transition-delay: .06s;
+}
+
+.section[data-animate]:nth-of-type(3) {
+    transition-delay: .12s;
+}
+
+.section[data-animate]:nth-of-type(4) {
+    transition-delay: .18s;
+}
+
+.section[data-animate]:nth-of-type(5) {
+    transition-delay: .24s;
+}
+
+.section[data-animate]:nth-of-type(6) {
+    transition-delay: .30s;
+}
 
 /* ══════════════════════════════════════════════════════════════
    TOPBAR
@@ -173,7 +187,7 @@ body {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, .08) 0%, transparent 70%);
     animation: heroOrb 12s ease-in-out infinite alternate;
 }
 
@@ -185,18 +199,30 @@ body {
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, .05) 0%, transparent 70%);
     animation: heroOrb 10s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes heroGradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 @keyframes heroOrb {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(40px, -30px) scale(1.15); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
 }
 
 .hero__text {
@@ -212,6 +238,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -248,7 +275,7 @@ body {
    LAYOUT — Two-column grid
    ══════════════════════════════════════════════════════════════ */
 .layout {
-    max-width: 1040px;
+    max-width: 1690px;
     margin: -44px auto 72px;
     padding: 0 28px;
     display: grid;
@@ -279,6 +306,7 @@ body {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -360,6 +388,7 @@ body {
         opacity: 0;
         transform: translateY(24px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -378,7 +407,7 @@ body {
 
 .section:first-of-type {
     border-top: none;
-    padding-top: 20px;
+    padding-top: 48px;
 }
 
 .section__title {
@@ -433,7 +462,7 @@ body {
     font-size: .88rem;
     border: 1px solid rgba(3, 127, 255, .15);
     transition: transform var(--duration) var(--ease-spring),
-                box-shadow var(--duration) var(--ease-out);
+        box-shadow var(--duration) var(--ease-out);
 }
 
 .pill:hover {
@@ -466,11 +495,11 @@ body {
     position: relative;
 }
 
-.field > span {
+.field>span {
     transition: color var(--duration-fast) var(--ease-out);
 }
 
-.field:focus-within > span {
+.field:focus-within>span {
     color: var(--primary);
 }
 
@@ -482,17 +511,67 @@ input,
 select,
 textarea {
     font-family: var(--font-body);
-    font-size: .92rem;
+    font-size: 1rem;
     color: var(--ink);
     border: 1.5px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 12px 14px;
+    padding: 14px 16px;
     background: var(--surface);
     outline: none;
+    width: 100%;
     transition:
         border-color var(--duration-fast) var(--ease-out),
         box-shadow var(--duration) var(--ease-out),
         transform var(--duration-fast) var(--ease-out);
+}
+
+/* ── Search wrapper (DNI/RUC) ──────────────────────────────── */
+.field--search {
+    position: relative;
+}
+
+.field--search input {
+    padding-right: 48px;
+}
+
+.field--search__btn {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-spring),
+        box-shadow var(--duration) var(--ease-out);
+}
+
+.field--search__btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.08);
+    box-shadow: 0 2px 10px rgba(3, 127, 255, .3);
+}
+
+.field--search__btn:active {
+    transform: scale(.95);
+}
+
+.field--search__btn .icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Hidden utility (persona toggle) ───────────────────────── */
+.hidden {
+    display: none !important;
 }
 
 input:hover,
@@ -634,7 +713,7 @@ select:focus {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .15) 0%, transparent 60%);
     opacity: 0;
     transition: opacity var(--duration) var(--ease-out);
 }
@@ -794,6 +873,7 @@ select:focus {
 
 /* ── Reduced Motion ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
