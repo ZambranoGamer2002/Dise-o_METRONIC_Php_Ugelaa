@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de Trámite Externo — Prototipo Metronic 8.2.9.">
+    <title>Trámite Externo | Metronic</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/media/logos/favicon.ico">
+
+    <!-- Metronic base styles -->
+    <link href="../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+
+    <!-- Trámite Externo styles -->
+    <link rel="stylesheet" href="../assets/css/tramite-externo.css">
+
+    <!-- Ajustes visuales: paleta base de Metronic -->
+    <style>
+        .te-body {
+            font-family: Inter, Helvetica, sans-serif;
+            background: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        .te-sidebar {
+            background: var(--bs-gray-900) !important;
+        }
+
+        .te-sidebar__brand {
+            border-bottom-color: rgba(255, 255, 255, .08) !important;
+            justify-content: flex-start;
+        }
+
+        .te-sidebar__logo {
+            width: auto !important;
+            height: 28px !important;
+            max-width: 145px;
+            object-fit: contain;
+        }
+
+        .te-nav-item {
+            color: var(--bs-gray-400) !important;
+        }
+
+        .te-nav-item:hover {
+            color: var(--bs-gray-100) !important;
+            background: rgba(255, 255, 255, .05) !important;
+        }
+
+        .te-nav-item.active {
+            color: var(--bs-primary) !important;
+            background: rgba(var(--bs-primary-rgb), .12) !important;
+        }
+
+        .te-nav-item.active::before {
+            background: var(--bs-primary) !important;
+        }
+
+        .te-nav-item__badge {
+            background: var(--bs-primary) !important;
+            color: #fff !important;
+        }
+
+        .te-header,
+        .te-card,
+        .te-stat {
+            background: var(--bs-body-bg) !important;
+            border-color: var(--bs-border-color) !important;
+        }
+
+        .te-page-title,
+        .te-card__title,
+        .te-stat__value {
+            color: var(--bs-gray-900) !important;
+        }
+
+        .te-page-subtitle,
+        .te-stat__label,
+        .te-pagination__info,
+        .te-filter-label {
+            color: var(--bs-gray-600) !important;
+        }
+
+        .te-btn--primary,
+        .te-pagination__btn.active {
+            background: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+            color: #fff !important;
+        }
+
+        .te-btn--primary:hover {
+            filter: brightness(.95);
+        }
+
+        .te-search__input:focus,
+        .te-select:focus,
+        .te-form-input:focus,
+        .te-form-textarea:focus {
+            border-color: var(--bs-primary) !important;
+            box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .12) !important;
+        }
+
+        .te-table thead th {
+            background: var(--bs-primary) !important;
+            color: #fff !important;
+        }
+
+        .te-table__doc-code {
+            color: var(--bs-primary) !important;
+        }
+
+        .te-stat__icon--primary {
+            color: var(--bs-primary) !important;
+            background: rgba(var(--bs-primary-rgb), .10) !important;
+        }
+
+        .te-stat__icon--success {
+            color: var(--bs-success) !important;
+            background: rgba(var(--bs-success-rgb), .10) !important;
+        }
+
+        .te-stat__icon--warning {
+            color: var(--bs-warning) !important;
+            background: rgba(var(--bs-warning-rgb), .12) !important;
+        }
+
+        .te-stat__icon--danger {
+            color: var(--bs-danger) !important;
+            background: rgba(var(--bs-danger-rgb), .10) !important;
+        }
+
+        .te-badge--success {
+            color: var(--bs-success) !important;
+            background: rgba(var(--bs-success-rgb), .10) !important;
+        }
+
+        .te-badge--warning {
+            color: var(--bs-warning) !important;
+            background: rgba(var(--bs-warning-rgb), .12) !important;
+        }
+
+        .te-badge--danger {
+            color: var(--bs-danger) !important;
+            background: rgba(var(--bs-danger-rgb), .10) !important;
+        }
+
+        .te-badge--info {
+            color: var(--bs-info) !important;
+            background: rgba(var(--bs-info-rgb), .10) !important;
+        }
+    </style>
+</head>
+
+<body class="te-body">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="te-sidebar" id="teSidebar">
+        <div class="te-sidebar__brand">
+            <img src="../assets/media/logos/default-dark.svg" alt="Metronic" class="te-sidebar__logo">
+        </div>
+
+        <nav class="te-sidebar__nav">
+            <div class="te-sidebar__section-title">Módulo</div>
+
+            <a href="tramite-externo.html" class="te-nav-item active">
+                <svg class="te-nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                </svg>
+                Trámite Externo
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Sidebar overlay (mobile) -->
+    <div class="te-sidebar-overlay" id="teSidebarOverlay"></div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="te-main">
+
+        <!-- Header -->
+        <header class="te-header">
+            <div class="te-header__left">
+                <button class="te-header__toggle" id="teToggleSidebar" aria-label="Abrir menú">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="15" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <nav class="te-breadcrumb">
+                    <span class="te-breadcrumb__current">Trámite Externo</span>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="te-content">
+
+            <!-- Page Header -->
+            <div class="te-page-header te-animate-in">
+                <h1 class="te-page-title">Trámite Externo</h1>
+                <p class="te-page-subtitle">Gestión y seguimiento de documentos externos</p>
+            </div>
+
+            <!-- Stats Bar -->
+            <section class="te-stats" aria-label="Resumen estadístico">
+                <div class="te-stat te-animate-in te-animate-delay-1">
+                    <div class="te-stat__icon te-stat__icon--primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                    </div>
+                    <div class="te-stat__info">
+                        <div class="te-stat__value te-count-animate">148</div>
+                        <div class="te-stat__label">Total Documentos</div>
+                    </div>
+                </div>
+
+                <div class="te-stat te-animate-in te-animate-delay-2">
+                    <div class="te-stat__icon te-stat__icon--warning">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <div class="te-stat__info">
+                        <div class="te-stat__value te-count-animate">23</div>
+                        <div class="te-stat__label">Pendientes</div>
+                    </div>
+                </div>
+
+                <div class="te-stat te-animate-in te-animate-delay-3">
+                    <div class="te-stat__icon te-stat__icon--success">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                    </div>
+                    <div class="te-stat__info">
+                        <div class="te-stat__value te-count-animate">112</div>
+                        <div class="te-stat__label">Atendidos</div>
+                    </div>
+                </div>
+
+                <div class="te-stat te-animate-in te-animate-delay-4">
+                    <div class="te-stat__icon te-stat__icon--danger">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="15" y1="9" x2="9" y2="15" />
+                            <line x1="9" y1="9" x2="15" y2="15" />
+                        </svg>
+                    </div>
+                    <div class="te-stat__info">
+                        <div class="te-stat__value te-count-animate">13</div>
+                        <div class="te-stat__label">Rechazados</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Layout: Table + Filters -->
+            <div class="te-layout">
+
+                <!-- ═══ TABLE CARD ═══ -->
+                <div class="te-card te-animate-in te-animate-delay-2">
+                    <!-- Toolbar: Search + Actions -->
+                    <div class="te-toolbar">
+                        <div class="te-search">
+                            <svg class="te-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                            <input type="search" class="te-search__input" id="teSearchInput"
+                                placeholder="Buscar por nombre, DNI o documento..." autocomplete="off">
+                            <div class="te-search__kbd">
+                                <kbd>Ctrl</kbd><kbd>K</kbd>
+                            </div>
+                        </div>
+                        <div class="te-toolbar__actions">
+                            <button class="te-btn te-btn--outline te-btn--sm" id="teExportBtn" title="Exportar datos">
+                                <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Exportar
+                            </button>
+                            <button class="te-btn te-btn--primary" id="teRedactarBtn">
+                                <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg>
+                                Redactar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="te-table-wrapper">
+                        <table class="te-table" id="teTramiteTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px">#</th>
+                                    <th>Documento</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Tipo Usuario</th>
+                                    <th>Estado</th>
+                                    <th style="width: 120px">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teTramiteBody">
+                                <tr>
+                                    <td class="te-table__row-number">1</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0148</span></td>
+                                    <td>García López, María Elena</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                <circle cx="12" cy="7" r="4" />
+                                            </svg>
+                                            Natural
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--success"><span
+                                                class="te-badge__dot"></span>Atendido</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">2</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0147</span></td>
+                                    <td>Torres Ríos, Juan Carlos</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                            </svg>
+                                            Jurídico
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--warning"><span
+                                                class="te-badge__dot"></span>Pendiente</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">3</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0146</span></td>
+                                    <td>Mendoza Vargas, Ana Patricia</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                <circle cx="12" cy="7" r="4" />
+                                            </svg>
+                                            Natural
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--danger"><span
+                                                class="te-badge__dot"></span>Rechazado</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">4</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0145</span></td>
+                                    <td>Ruiz Sánchez, Carlos Alberto</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                            </svg>
+                                            Jurídico
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--success"><span
+                                                class="te-badge__dot"></span>Atendido</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">5</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0144</span></td>
+                                    <td>Flores Castillo, Rosa María</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                <circle cx="12" cy="7" r="4" />
+                                            </svg>
+                                            Natural
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--info"><span class="te-badge__dot"></span>En
+                                            proceso</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">6</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0143</span></td>
+                                    <td>Quispe Huamán, Luis Fernando</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                <circle cx="12" cy="7" r="4" />
+                                            </svg>
+                                            Natural
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--warning"><span
+                                                class="te-badge__dot"></span>Pendiente</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">7</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0142</span></td>
+                                    <td>Vásquez Díaz, Pedro Miguel</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                            </svg>
+                                            Jurídico
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--success"><span
+                                                class="te-badge__dot"></span>Atendido</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="te-table__row-number">8</td>
+                                    <td><span class="te-table__doc-code">EXT-2026-0141</span></td>
+                                    <td>Rodríguez Peña, Carmen Lucía</td>
+                                    <td>
+                                        <span class="te-user-type">
+                                            <svg class="te-user-type__icon" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                <circle cx="12" cy="7" r="4" />
+                                            </svg>
+                                            Natural
+                                        </span>
+                                    </td>
+                                    <td><span class="te-badge te-badge--success"><span
+                                                class="te-badge__dot"></span>Atendido</span></td>
+                                    <td>
+                                        <div class="te-table__actions">
+                                            <button class="te-table__action-btn" title="Ver detalle"
+                                                aria-label="Ver detalle">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn" title="Editar" aria-label="Editar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="te-table__action-btn te-table__action-btn--danger"
+                                                title="Eliminar" aria-label="Eliminar">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6" />
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="te-pagination">
+                        <span class="te-pagination__info">Mostrando 1 - 8 de 148 registros</span>
+                        <div class="te-pagination__controls">
+                            <button class="te-pagination__btn" disabled aria-label="Anterior">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                            </button>
+                            <button class="te-pagination__btn active">1</button>
+                            <button class="te-pagination__btn">2</button>
+                            <button class="te-pagination__btn">3</button>
+                            <button class="te-pagination__btn">...</button>
+                            <button class="te-pagination__btn">19</button>
+                            <button class="te-pagination__btn" aria-label="Siguiente">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ FILTER PANEL ═══ -->
+                <aside class="te-filters te-animate-in te-animate-delay-3">
+                    <div class="te-card">
+                        <div class="te-card__header">
+                            <h2 class="te-card__title">
+                                <svg class="te-card__title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                                </svg>
+                                Filtros
+                            </h2>
+                            <button class="te-btn te-btn--ghost te-btn--sm" id="teClearFilters" title="Limpiar filtros">
+                                <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    style="width:14px;height:14px">
+                                    <polyline points="1 4 1 10 7 10" />
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                                </svg>
+                                Limpiar
+                            </button>
+                        </div>
+                        <div class="te-card__body">
+                            <!-- Año -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label" for="teFilterYear">Año</label>
+                                <select class="te-select" id="teFilterYear">
+                                    <option value="">Todos los años</option>
+                                    <option value="2026" selected>2026</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                </select>
+                            </div>
+
+                            <!-- Mes -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label" for="teFilterMonth">Mes</label>
+                                <select class="te-select" id="teFilterMonth">
+                                    <option value="">Todos los meses</option>
+                                    <option value="01">Enero</option>
+                                    <option value="02">Febrero</option>
+                                    <option value="03">Marzo</option>
+                                    <option value="04">Abril</option>
+                                    <option value="05">Mayo</option>
+                                    <option value="06">Junio</option>
+                                    <option value="07">Julio</option>
+                                    <option value="08">Agosto</option>
+                                    <option value="09" selected>Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
+                            </div>
+
+                            <div class="te-filter-divider"></div>
+
+                            <!-- Estado -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label">Estado</label>
+                                <div class="te-filter-check">
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fAtendido" checked>
+                                        <label for="fAtendido">Atendido</label>
+                                        <span class="te-filter-check__count">112</span>
+                                    </div>
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fPendiente" checked>
+                                        <label for="fPendiente">Pendiente</label>
+                                        <span class="te-filter-check__count">23</span>
+                                    </div>
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fProceso" checked>
+                                        <label for="fProceso">En proceso</label>
+                                        <span class="te-filter-check__count">0</span>
+                                    </div>
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fRechazado" checked>
+                                        <label for="fRechazado">Rechazado</label>
+                                        <span class="te-filter-check__count">13</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="te-filter-divider"></div>
+
+                            <!-- Tipo Usuario -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label">Tipo de Usuario</label>
+                                <div class="te-filter-check">
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fNatural" checked>
+                                        <label for="fNatural">Persona Natural</label>
+                                    </div>
+                                    <div class="te-filter-check__item">
+                                        <input type="checkbox" id="fJuridico" checked>
+                                        <label for="fJuridico">Persona Jurídica</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="te-filter-divider"></div>
+
+                            <!-- Registros por página -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label" for="teFilterPerPage">Registros por página</label>
+                                <select class="te-select" id="teFilterPerPage">
+                                    <option value="8" selected>8 registros</option>
+                                    <option value="15">15 registros</option>
+                                    <option value="25">25 registros</option>
+                                    <option value="50">50 registros</option>
+                                </select>
+                            </div>
+
+                            <!-- Apply Filters -->
+                            <div class="te-filter-actions">
+                                <button class="te-btn te-btn--primary te-btn--sm" id="teApplyFilters" style="flex:1">
+                                    <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        style="width:15px;height:15px">
+                                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                                    </svg>
+                                    Aplicar Filtros
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ MODAL: Redactar Trámite ═══ -->
+    <div class="te-modal-overlay" id="teModalOverlay">
+        <div class="te-modal" role="dialog" aria-modal="true" aria-labelledby="teModalTitle">
+            <div class="te-modal__header">
+                <h3 class="te-modal__title" id="teModalTitle">Nuevo Trámite Externo</h3>
+                <button class="te-modal__close" id="teModalClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="te-modal__body">
+                <div class="te-form-row">
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teDocTipo">Tipo de Documento</label>
+                        <select class="te-select" id="teDocTipo">
+                            <option value="">Seleccionar</option>
+                            <option>Oficio</option>
+                            <option>Solicitud</option>
+                            <option>Carta</option>
+                            <option>Informe</option>
+                            <option>Memorando</option>
+                        </select>
+                    </div>
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teDocNumero">N° de Documento</label>
+                        <input type="text" class="te-form-input" id="teDocNumero" placeholder="Ej: EXT-2026-0149">
+                    </div>
+                </div>
+                <div class="te-form-row">
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teSolicitanteNombre">Nombre Completo</label>
+                        <input type="text" class="te-form-input" id="teSolicitanteNombre"
+                            placeholder="Apellidos y nombres">
+                    </div>
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teSolicitanteDNI">DNI / RUC</label>
+                        <input type="text" class="te-form-input" id="teSolicitanteDNI"
+                            placeholder="Número de documento">
+                    </div>
+                </div>
+                <div class="te-form-group">
+                    <label class="te-form-label" for="teDocAsunto">Asunto</label>
+                    <textarea class="te-form-textarea" id="teDocAsunto"
+                        placeholder="Describa brevemente el asunto del trámite..."></textarea>
+                </div>
+                <div class="te-form-row">
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teTipoUsuario">Tipo de Solicitante</label>
+                        <select class="te-select" id="teTipoUsuario">
+                            <option value="">Seleccionar</option>
+                            <option>Natural</option>
+                            <option>Jurídico</option>
+                        </select>
+                    </div>
+                    <div class="te-form-group">
+                        <label class="te-form-label" for="teDestinoArea">Área de Destino</label>
+                        <select class="te-select" id="teDestinoArea">
+                            <option value="">Seleccionar</option>
+                            <option>Dirección</option>
+                            <option>Administración</option>
+                            <option>Gestión Pedagógica</option>
+                            <option>Gestión Institucional</option>
+                            <option>Asesoría Jurídica</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="te-modal__footer">
+                <button class="te-btn te-btn--outline" id="teModalCancel">Cancelar</button>
+                <button class="te-btn te-btn--primary" id="teModalSave">
+                    <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg>
+                    Guardar Trámite
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="te-toast-container" id="teToastContainer"></div>
+
+    <!-- Script -->
+    <script src="../assets/js/script.js"></script>
+</body>
+
+</html>
