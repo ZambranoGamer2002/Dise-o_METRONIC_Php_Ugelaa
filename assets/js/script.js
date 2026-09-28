@@ -164,6 +164,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─── Inbox Navigation (Bandejas) ───
+    const bandejaLinks = document.querySelectorAll('.te-inbox-nav__item');
+    const tituloBandeja = document.getElementById('tituloBandeja');
+    const descripcionBandeja = document.getElementById('descripcionBandeja');
+
+    const bandejaInfo = {
+        por_recibir: {
+            titulo: 'Por recibir',
+            descripcion: 'Documentos pendientes de recepción'
+        },
+        recibidos: {
+            titulo: 'Recibidos',
+            descripcion: 'Documentos recibidos y registrados'
+        },
+        en_atencion: {
+            titulo: 'En atención',
+            descripcion: 'Documentos en proceso de atención'
+        },
+        derivados: {
+            titulo: 'Derivados',
+            descripcion: 'Documentos derivados a otras áreas'
+        },
+        atendidos: {
+            titulo: 'Atendidos',
+            descripcion: 'Documentos atendidos completamente'
+        }
+    };
+
+    bandejaLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Remover active de todos
+            bandejaLinks.forEach(l => l.classList.remove('active'));
+            // Activar el clicked
+            link.classList.add('active');
+
+            // Actualizar título y descripción
+            const tipo = link.getAttribute('data-tipo');
+            if (bandejaInfo[tipo]) {
+                if (tituloBandeja) tituloBandeja.textContent = bandejaInfo[tipo].titulo;
+                if (descripcionBandeja) descripcionBandeja.textContent = bandejaInfo[tipo].descripcion;
+            }
+
+            // Feedback visual
+            showToast('info', 'Bandeja', `Cargando bandeja "${bandejaInfo[tipo]?.titulo || tipo}"...`);
+        });
+    });
+
     // ─── Modal: Redactar Trámite ───
     const modalOverlay = document.getElementById('teModalOverlay');
     const redactarBtn = document.getElementById('teRedactarBtn');
@@ -277,19 +324,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', () => {
-            showToast('success', 'Filtros aplicados', 'La tabla se actualizó con los filtros seleccionados.');
+            // Recopilar años seleccionados
+            const selectedYears = [];
+            document.querySelectorAll('.te-inbox-filters input[id^="fYear"]:checked').forEach(cb => {
+                selectedYears.push(cb.id.replace('fYear', ''));
+            });
+
+            const yearText = selectedYears.length > 0 ? selectedYears.join(', ') : 'Todos';
+            showToast('success', 'Filtros aplicados', `Años: ${yearText}. La tabla se actualizó con los filtros seleccionados.`);
         });
     }
 
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
-            // Reset all selects
-            document.querySelectorAll('.te-filters .te-select').forEach(select => {
-                select.selectedIndex = 0;
-            });
-            // Check all checkboxes
-            document.querySelectorAll('.te-filters input[type="checkbox"]').forEach(cb => {
+            // Reset all checkboxes to checked
+            document.querySelectorAll('.te-inbox-filters input[type="checkbox"]').forEach(cb => {
                 cb.checked = true;
+            });
+            // Reset selects
+            document.querySelectorAll('.te-inbox-filters .te-select').forEach(select => {
+                select.selectedIndex = 0;
             });
             showToast('info', 'Filtros limpiados', 'Se restauraron los filtros por defecto.');
         });
