@@ -271,77 +271,64 @@
                                 </button>
                             </div>
 
-                            <!-- Año (selección múltiple con checkboxes) -->
+                            <!-- Año -->
                             <div class="te-filter-group">
-                                <label class="te-filter-label">Año</label>
-                                <div class="te-filter-check">
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fYear2026" checked>
-                                        <label for="fYear2026">2026</label>
-                                        <span class="te-filter-check__count">148</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fYear2025">
-                                        <label for="fYear2025">2025</label>
-                                        <span class="te-filter-check__count">312</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fYear2024">
-                                        <label for="fYear2024">2024</label>
-                                        <span class="te-filter-check__count">289</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fYear2023">
-                                        <label for="fYear2023">2023</label>
-                                        <span class="te-filter-check__count">201</span>
-                                    </div>
-                                </div>
+                                <label class="te-filter-label" for="teFilterYear">Año</label>
+                                <select class="te-select te-filter-auto" id="teFilterYear">
+                                    <option value="" selected>Todos los años</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                </select>
+                            </div>
+
+                            <div class="te-filter-divider"></div>
+
+                            <!-- Mes -->
+                            <div class="te-filter-group">
+                                <label class="te-filter-label" for="teFilterMonth">Mes</label>
+                                <select class="te-select te-filter-auto" id="teFilterMonth">
+                                    <option value="" selected>Todos los meses</option>
+                                    <option value="01">Enero</option>
+                                    <option value="02">Febrero</option>
+                                    <option value="03">Marzo</option>
+                                    <option value="04">Abril</option>
+                                    <option value="05">Mayo</option>
+                                    <option value="06">Junio</option>
+                                    <option value="07">Julio</option>
+                                    <option value="08">Agosto</option>
+                                    <option value="09">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
                             </div>
 
                             <div class="te-filter-divider"></div>
 
                             <!-- Estado -->
                             <div class="te-filter-group">
-                                <label class="te-filter-label">Estado</label>
-                                <div class="te-filter-check">
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fAtendido" checked>
-                                        <label for="fAtendido">Atendido</label>
-                                        <span class="te-filter-check__count">112</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fPendiente" checked>
-                                        <label for="fPendiente">Pendiente</label>
-                                        <span class="te-filter-check__count">23</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fProceso" checked>
-                                        <label for="fProceso">En proceso</label>
-                                        <span class="te-filter-check__count">0</span>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fRechazado" checked>
-                                        <label for="fRechazado">Rechazado</label>
-                                        <span class="te-filter-check__count">13</span>
-                                    </div>
-                                </div>
+                                <label class="te-filter-label" for="teFilterEstado">Estado</label>
+                                <select class="te-select te-filter-auto" id="teFilterEstado">
+                                    <option value="" selected>Todos los estados</option>
+                                    <option value="atendido">Atendido</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="en_proceso">En proceso</option>
+                                    <option value="rechazado">Rechazado</option>
+                                </select>
                             </div>
 
                             <div class="te-filter-divider"></div>
 
                             <!-- Tipo Usuario -->
                             <div class="te-filter-group">
-                                <label class="te-filter-label">Tipo de Usuario</label>
-                                <div class="te-filter-check">
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fNatural" checked>
-                                        <label for="fNatural">Persona Natural</label>
-                                    </div>
-                                    <div class="te-filter-check__item">
-                                        <input type="checkbox" id="fJuridico" checked>
-                                        <label for="fJuridico">Persona Jurídica</label>
-                                    </div>
-                                </div>
+                                <label class="te-filter-label" for="teFilterTipoUsuario">Tipo de Usuario</label>
+                                <select class="te-select te-filter-auto" id="teFilterTipoUsuario">
+                                    <option value="" selected>Todos los tipos</option>
+                                    <option value="natural">Persona Natural</option>
+                                    <option value="juridico">Persona Jurídica</option>
+                                </select>
                             </div>
 
                             <div class="te-filter-divider"></div>
@@ -349,24 +336,12 @@
                             <!-- Registros por página -->
                             <div class="te-filter-group">
                                 <label class="te-filter-label" for="teFilterPerPage">Registros por página</label>
-                                <select class="te-select" id="teFilterPerPage">
+                                <select class="te-select te-filter-auto" id="teFilterPerPage">
                                     <option value="8" selected>8 registros</option>
                                     <option value="15">15 registros</option>
                                     <option value="25">25 registros</option>
                                     <option value="50">50 registros</option>
                                 </select>
-                            </div>
-
-                            <!-- Aplicar Filtros -->
-                            <div class="te-filter-actions">
-                                <button class="te-btn te-btn--primary te-btn--sm" id="teApplyFilters" style="flex:1">
-                                    <svg class="te-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                        style="width:15px;height:15px">
-                                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                                    </svg>
-                                    Aplicar Filtros
-                                </button>
                             </div>
                         </div>
                     </div>

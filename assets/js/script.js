@@ -318,30 +318,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ─── Filters ───
-    const applyFiltersBtn = document.getElementById('teApplyFilters');
+    // ─── Filters (automáticos al cambiar selección) ───
+    const autoFilterSelects = document.querySelectorAll('.te-filter-auto');
     const clearFiltersBtn = document.getElementById('teClearFilters');
 
-    if (applyFiltersBtn) {
-        applyFiltersBtn.addEventListener('click', () => {
-            // Recopilar años seleccionados
-            const selectedYears = [];
-            document.querySelectorAll('.te-inbox-filters input[id^="fYear"]:checked').forEach(cb => {
-                selectedYears.push(cb.id.replace('fYear', ''));
-            });
-
-            const yearText = selectedYears.length > 0 ? selectedYears.join(', ') : 'Todos';
-            showToast('success', 'Filtros aplicados', `Años: ${yearText}. La tabla se actualizó con los filtros seleccionados.`);
+    autoFilterSelects.forEach(select => {
+        select.addEventListener('change', () => {
+            const filterName = select.closest('.te-filter-group')?.querySelector('.te-filter-label')?.textContent || '';
+            const selectedText = select.options[select.selectedIndex]?.text || '';
+            showToast('success', 'Filtro aplicado', `${filterName}: ${selectedText}`);
         });
-    }
+    });
 
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
-            // Reset all checkboxes to checked
-            document.querySelectorAll('.te-inbox-filters input[type="checkbox"]').forEach(cb => {
-                cb.checked = true;
-            });
-            // Reset selects
+            // Reset all selects to first option (Todos)
             document.querySelectorAll('.te-inbox-filters .te-select').forEach(select => {
                 select.selectedIndex = 0;
             });
